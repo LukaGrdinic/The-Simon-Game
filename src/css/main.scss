@@ -11,7 +11,11 @@ $blueButtonDarker: #4d4dd5;
 $yellowButton: #f0f05e;
 $yellowButtonDarker: #e6e612;
 
-/* Color shapes */
+/* COLOR SHAPES */
+
+svg path {
+    cursor: pointer;
+}
 
 #greenButton { /* Hover stands as a color variant when button is clicked */
     fill: $greenButton;
@@ -35,6 +39,18 @@ $yellowButtonDarker: #e6e612;
     fill: $yellowButton;
     &:hover {
         fill: $yellowButtonDarker;
+    }
+}
+
+/* BUTTON BOARD */
+
+#buttonBoard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    h1 {
+        text-transform: uppercase;
     }
 }
 

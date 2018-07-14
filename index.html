@@ -14,27 +14,40 @@
 <body>
     <h1 style="text-align: center"> The Simon Game</h1>
 
-    <div style="text-align: center">
+    <div style="text-align: center; position: relative;">
+        <div id="buttonBoard">
+            <h1 style="font-size: 3rem">Simon</h1>
+            <div>
+                <div>
+                    <button>On/Off</button>
+                    <button>Start</button>
+                    <button>Strict</button>
+                </div>
+                <div>
+                    Counter
+                </div>
+            </div>
+        </div>
         <svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <!-- Outer and inner circle -->
             <circle id="circle_outer" r="235" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="20" stroke="#3C3C3C" fill="none" />
+                stroke-width="20" stroke="#3C3C3C" fill="none" />
             <circle id="circle_inner" r="135" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="30" stroke="#3C3C3C" fill="none" />
+                stroke-width="30" stroke="#3C3C3C" fill="gray" />
             <!-- Color shapes - buttons of the game -->
             <path id="greenButton" d="M100 325 L175 325 A 150 150 0 0 1 325 175 L325 100 A225 225 0 0 0 100 325" stroke="black" stroke-width="0"></path>
             <path id="redButton" d="M550 325 L475 325 A 150 150 0 0 0 325 175 L325 100 A225 225 0 0 1 550 325" stroke="black" stroke-width="0"></path>
             <path id="blueButton" d="M550 325 L475 325 A 150 150 0 0 1 325 475 L325 550 A225 225 0 0 0 550 325" stroke="black" stroke-width="0"></path>
             <path id="yellowButton" d="M100 325 L175 325 A 150 150 0 0 0 325 475 L325 550 A225 225 0 0 1 100 325" stroke="black" stroke-width="0"></path>
             <!-- Lines that present limits between buttons of the game -->
-            <line y1="325" x1="90" y2="325" x2="185"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="10" stroke="#3C3C3C" fill="none" />
-            <line y1="325" x1="465" y2="325" x2="560"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="10" stroke="#3C3C3C" fill="none" />
-            <line y1="185" x1="325" y2="90" x2="325"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="10" stroke="#3C3C3C" fill="none" />
-            <line y1="465" x1="325" y2="560" x2="325"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="10" stroke="#3C3C3C" fill="none" />
+            <line y1="325" x1="90" y2="325" x2="185" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10"
+                stroke="#3C3C3C" fill="none" />
+            <line y1="325" x1="465" y2="325" x2="560" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10"
+                stroke="#3C3C3C" fill="none" />
+            <line y1="185" x1="325" y2="90" x2="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10"
+                stroke="#3C3C3C" fill="none" />
+            <line y1="465" x1="325" y2="560" x2="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10"
+                stroke="#3C3C3C" fill="none" />
         </svg>
     </div>
 </body>

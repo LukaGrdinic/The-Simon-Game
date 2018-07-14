@@ -1,6 +1,9 @@
 /* TYPE TO COMPILE : sass --watch src/css/main.scss:src/css/main.css */
 /* VARIABLES */
-/* Color shapes */
+/* COLOR SHAPES */
+svg path {
+  cursor: pointer; }
+
 #greenButton {
   /* Hover stands as a color variant when button is clicked */
   fill: #39c339; }
@@ -21,6 +24,15 @@
   fill: #f0f05e; }
   #yellowButton:hover {
     fill: #e6e612; }
+
+/* BUTTON BOARD */
+#buttonBoard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  #buttonBoard h1 {
+    text-transform: uppercase; }
 
 /* CUSTOM CLASSES */
 h1 {
