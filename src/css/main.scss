@@ -10,31 +10,34 @@ $blueButton: #7070f4;
 $blueButtonDarker: #4d4dd5;
 $yellowButton: #f0f05e;
 $yellowButtonDarker: #e6e612;
-
 /* COLOR SHAPES */
 
 svg path {
     cursor: pointer;
 }
 
-#greenButton { /* Hover stands as a color variant when button is clicked */
+#greenButton {
+    /* Hover stands as a color variant when button is clicked */
     fill: $greenButton;
     &:hover {
         fill: $greenButtonDarker;
     }
 }
+
 #redButton {
     fill: $redButton;
     &:hover {
         fill: $redButtonDarker;
     }
 }
+
 #blueButton {
     fill: $blueButton;
     &:hover {
         fill: $blueButtonDarker;
     }
 }
+
 #yellowButton {
     fill: $yellowButton;
     &:hover {
@@ -48,9 +51,37 @@ svg path {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     h1 {
         text-transform: uppercase;
+    }
+    .button-section {
+        display: flex;
+        align-items: center;
+        &>div {
+            margin: 0.5rem;
+            label {
+                display: block;
+            }
+            .button-rounded {
+                border-radius: 50%;
+                height: 20px;
+                width: 20px;
+                border-style: outset;
+                outline: none;
+                &:active {
+                    border-style: inset;
+                }
+            }
+            #start-button { 
+                background: green;
+                border-color: green;
+            }
+            #strict-button {
+                background: red;
+                border-color: red;
+            }
+        }
     }
 }
 
