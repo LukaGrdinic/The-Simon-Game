@@ -1,4 +1,28 @@
 /* TYPE TO COMPILE : sass --watch src/css/main.scss:src/css/main.css */
+/* VARIABLES */
+/* Color shapes */
+#greenButton {
+  /* Hover stands as a color variant when button is clicked */
+  fill: #39c339; }
+  #greenButton:hover {
+    fill: #0aa60a; }
+
+#redButton {
+  fill: #e35c5c; }
+  #redButton:hover {
+    fill: #dd2626; }
+
+#blueButton {
+  fill: #7070f4; }
+  #blueButton:hover {
+    fill: #4d4dd5; }
+
+#yellowButton {
+  fill: #f0f05e; }
+  #yellowButton:hover {
+    fill: #e6e612; }
+
+/* CUSTOM CLASSES */
 h1 {
   margin: 0; }
 

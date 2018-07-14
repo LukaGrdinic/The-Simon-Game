@@ -18,18 +18,14 @@
         <svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <!-- Outer and inner circle -->
             <circle id="circle_outer" r="235" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="20" stroke="#3C3C3C" fill="transparent" />
+                    stroke-width="20" stroke="#3C3C3C" fill="none" />
             <circle id="circle_inner" r="135" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                    stroke-width="30" stroke="#3C3C3C" fill="transparent" />
+                    stroke-width="30" stroke="#3C3C3C" fill="none" />
             <!-- Color shapes - buttons of the game -->
-            <path d="M100 325 L175 325 A 150 150 0 0 1 325 175 L325 100 A225 225 0 0 0 100 325" stroke="black" fill="green" stroke-width="0"
-                fill-opacity="0.5"></path>
-            <path d="M550 325 L475 325 A 150 150 0 0 0 325 175 L325 100 A225 225 0 0 1 550 325" stroke="black" fill="red" stroke-width="0"
-                fill-opacity="0.5"></path>
-            <path d="M550 325 L475 325 A 150 150 0 0 1 325 475 L325 550 A225 225 0 0 0 550 325" stroke="black" fill="blue" stroke-width="0"
-                fill-opacity="0.5"></path>
-            <path d="M100 325 L175 325 A 150 150 0 0 0 325 475 L325 550 A225 225 0 0 1 100 325" stroke="black" fill="yellow" stroke-width="0"
-                fill-opacity="0.5"></path>
+            <path id="greenButton" d="M100 325 L175 325 A 150 150 0 0 1 325 175 L325 100 A225 225 0 0 0 100 325" stroke="black" stroke-width="0"></path>
+            <path id="redButton" d="M550 325 L475 325 A 150 150 0 0 0 325 175 L325 100 A225 225 0 0 1 550 325" stroke="black" stroke-width="0"></path>
+            <path id="blueButton" d="M550 325 L475 325 A 150 150 0 0 1 325 475 L325 550 A225 225 0 0 0 550 325" stroke="black" stroke-width="0"></path>
+            <path id="yellowButton" d="M100 325 L175 325 A 150 150 0 0 0 325 475 L325 550 A225 225 0 0 1 100 325" stroke="black" stroke-width="0"></path>
             <!-- Lines that present limits between buttons of the game -->
             <line y1="325" x1="90" y2="325" x2="185"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
                     stroke-width="10" stroke="#3C3C3C" fill="none" />

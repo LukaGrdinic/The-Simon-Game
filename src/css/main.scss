@@ -1,5 +1,45 @@
 /* TYPE TO COMPILE : sass --watch src/css/main.scss:src/css/main.css */
 
+/* VARIABLES */
+
+$greenButton: #39c339;
+$greenButtonDarker: #0aa60a;
+$redButton: #e35c5c;
+$redButtonDarker: #dd2626;
+$blueButton: #7070f4;
+$blueButtonDarker: #4d4dd5;
+$yellowButton: #f0f05e;
+$yellowButtonDarker: #e6e612;
+
+/* Color shapes */
+
+#greenButton { /* Hover stands as a color variant when button is clicked */
+    fill: $greenButton;
+    &:hover {
+        fill: $greenButtonDarker;
+    }
+}
+#redButton {
+    fill: $redButton;
+    &:hover {
+        fill: $redButtonDarker;
+    }
+}
+#blueButton {
+    fill: $blueButton;
+    &:hover {
+        fill: $blueButtonDarker;
+    }
+}
+#yellowButton {
+    fill: $yellowButton;
+    &:hover {
+        fill: $yellowButtonDarker;
+    }
+}
+
+/* CUSTOM CLASSES */
+
 h1 {
     margin: 0;
 }
