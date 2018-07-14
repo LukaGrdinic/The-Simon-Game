@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="icon" sizes="16x16" href="images/smiley-face.png">
-
-    <link href="src/css/main.css" rel="stylesheet">
-</head>
-
-<body>
-    <h1 style="text-align: center"> The Simon Game</h1>
-
-    <div style="text-align: center">
-        <svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <!-- Outer and inner circle -->
             <circle id="circle_outer" r="235" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
                     stroke-width="20" stroke="#3C3C3C" fill="transparent" />
@@ -40,7 +23,3 @@
             <line y1="465" x1="325" y2="560" x2="325"  stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
                     stroke-width="10" stroke="#3C3C3C" fill="none" />
         </svg>
-    </div>
-</body>
-
-</html>
