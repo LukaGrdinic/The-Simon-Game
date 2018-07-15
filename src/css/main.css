@@ -96,10 +96,10 @@ svg #yellowButton {
         left: 0;
         top: 50%;
         transform: translate(-150%, -50%);
-        background-color: #3C3C3C;
+        background: radial-gradient(#5b5656, #ebe7e7);
         pointer-events: none; }
       #buttonBoard .button-section > div input:checked + .slider:after {
-        background-color: orange; }
+        background: radial-gradient(#d45e0f, orange); }
   #buttonBoard .counter-section {
     padding-top: 0.25rem; }
   #buttonBoard .counter-section > span {
