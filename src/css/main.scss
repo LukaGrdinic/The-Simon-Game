@@ -17,6 +17,7 @@ $counterPink: #d45252;
 @font-face {
     font-family: calculatorFont;
     src: url(../../fonts/calculatorFont/digital-7.ttf);
+    font-display: swap;
 }
 
 /* COLOR SHAPES */
@@ -28,11 +29,15 @@ svg #yellowButton {
     cursor: pointer;
 }
 
-#greenButton {
+#greenButton { /* Should use a mixin for the big buttons */
     /* Hover stands as a color variant when button is clicked */
     fill: $greenButton;
     &:hover {
         fill: $greenButtonDarker;
+    }
+    &:active {
+        stroke: green;
+        stroke-width: 3;
     }
 }
 
@@ -41,6 +46,10 @@ svg #yellowButton {
     &:hover {
         fill: $redButtonDarker;
     }
+    &:active {
+        stroke: red;
+        stroke-width: 3;
+    }
 }
 
 #blueButton {
@@ -48,12 +57,20 @@ svg #yellowButton {
     &:hover {
         fill: $blueButtonDarker;
     }
+    &:active {
+        stroke: blue;
+        stroke-width: 3;
+    }
 }
 
 #yellowButton {
     fill: $yellowButton;
     &:hover {
         fill: $yellowButtonDarker;
+    }
+    &:active {
+        stroke: yellow;
+        stroke-width: 3;
     }
 }
 

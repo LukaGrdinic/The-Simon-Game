@@ -3,7 +3,8 @@
 /* FONTS */
 @font-face {
   font-family: calculatorFont;
-  src: url(../../fonts/calculatorFont/digital-7.ttf); }
+  src: url(../../fonts/calculatorFont/digital-7.ttf);
+  font-display: swap; }
 /* COLOR SHAPES */
 svg #greenButton,
 svg #redButton,
@@ -12,25 +13,38 @@ svg #yellowButton {
   cursor: pointer; }
 
 #greenButton {
+  /* Should use a mixin for the big buttons */
   /* Hover stands as a color variant when button is clicked */
   fill: #39c339; }
   #greenButton:hover {
     fill: #0aa60a; }
+  #greenButton:active {
+    stroke: green;
+    stroke-width: 3; }
 
 #redButton {
   fill: #e35c5c; }
   #redButton:hover {
     fill: #dd2626; }
+  #redButton:active {
+    stroke: red;
+    stroke-width: 3; }
 
 #blueButton {
   fill: #7070f4; }
   #blueButton:hover {
     fill: #4d4dd5; }
+  #blueButton:active {
+    stroke: blue;
+    stroke-width: 3; }
 
 #yellowButton {
   fill: #f0f05e; }
   #yellowButton:hover {
     fill: #e6e612; }
+  #yellowButton:active {
+    stroke: yellow;
+    stroke-width: 3; }
 
 /* BUTTON BOARD */
 #buttonBoard {
