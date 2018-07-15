@@ -1,5 +1,9 @@
 /* TYPE TO COMPILE : sass --watch src/css/main.scss:src/css/main.css */
 /* VARIABLES */
+/* FONTS */
+@font-face {
+  font-family: calculatorFont;
+  src: url(../../fonts/calculatorFont/digital-7.ttf); }
 /* COLOR SHAPES */
 svg #greenButton,
 svg #redButton,
@@ -36,7 +40,7 @@ svg #yellowButton {
   transform: translate(-50%, -40%);
   /* COUNTER */ }
   #buttonBoard h1 {
-    text-transform: uppercase; }
+    font-family: 'Montserrat', sans-serif; }
   #buttonBoard .button-section {
     display: flex;
     align-items: center; }
@@ -103,6 +107,7 @@ svg #yellowButton {
   #buttonBoard .counter-section {
     padding-top: 0.25rem; }
   #buttonBoard .counter-section > span {
+    font-family: calculatorFont;
     display: inline-block;
     font-size: 1.5rem;
     background: #3e2323;

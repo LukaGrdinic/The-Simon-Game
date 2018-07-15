@@ -11,6 +11,14 @@ $blueButtonDarker: #4d4dd5;
 $yellowButton: #f0f05e;
 $yellowButtonDarker: #e6e612;
 $counterPink: #d45252;
+
+/* FONTS */
+
+@font-face {
+    font-family: calculatorFont;
+    src: url(../../fonts/calculatorFont/digital-7.ttf);
+}
+
 /* COLOR SHAPES */
 
 svg #greenButton,
@@ -56,7 +64,7 @@ svg #yellowButton {
     left: 50%;
     transform: translate(-50%, -40%);
     h1 {
-        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
     }
     .button-section {
         display: flex;
@@ -140,6 +148,7 @@ svg #yellowButton {
         padding-top: 0.25rem;
     }
     .counter-section>span {
+        font-family: calculatorFont;
         display: inline-block;
         font-size: 1.5rem;
         background: #3e2323;
