@@ -1,7 +1,10 @@
 /* TYPE TO COMPILE : sass --watch src/css/main.scss:src/css/main.css */
 /* VARIABLES */
 /* COLOR SHAPES */
-svg path {
+svg #greenButton,
+svg #redButton,
+svg #blueButton,
+svg #yellowButton {
   cursor: pointer; }
 
 #greenButton {
@@ -30,7 +33,7 @@ svg path {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   /* COUNTER */ }
   #buttonBoard h1 {
     text-transform: uppercase; }
@@ -84,6 +87,28 @@ svg path {
         background-color: white; }
       #buttonBoard .button-section > div input:checked + .slider:before {
         transform: translateX(25px); }
+      #buttonBoard .button-section > div .slider:after {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        left: 0;
+        top: 50%;
+        transform: translate(-150%, -50%);
+        background-color: #3C3C3C;
+        pointer-events: none; }
+      #buttonBoard .button-section > div input:checked + .slider:after {
+        background-color: orange; }
+  #buttonBoard .counter-section {
+    padding-top: 0.25rem; }
+  #buttonBoard .counter-section > span {
+    display: inline-block;
+    font-size: 1.5rem;
+    background: #3e2323;
+    color: #d45252;
+    border: solid 1px black;
+    min-width: 60px; }
 
 /* CUSTOM CLASSES */
 h1 {
