@@ -175,6 +175,14 @@ svg #yellowButton {
     }
 }
 
+/* SMALL SCREENS HACK */
+
+@media (max-width: 650px) {
+    #buttonBoard {
+        left: 325px;
+    }
+}
+
 /* CUSTOM CLASSES */
 
 h1 {
