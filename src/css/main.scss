@@ -11,7 +11,6 @@ $blueButtonDarker: #4d4dd5;
 $yellowButton: #f0f05e;
 $yellowButtonDarker: #e6e612;
 $counterPink: #d45252;
-
 /* FONTS */
 
 @font-face {
@@ -29,7 +28,8 @@ svg #yellowButton {
     cursor: pointer;
 }
 
-#greenButton { /* Should use a mixin for the big buttons */
+#greenButton {
+    /* Should use a mixin for the big buttons */
     /* Hover stands as a color variant when button is clicked */
     fill: $greenButton;
     &:hover {
@@ -101,7 +101,7 @@ svg #yellowButton {
                     border-style: inset;
                 }
             }
-            #start-button {
+            #startButton {
                 background: green;
                 border-color: green;
             }

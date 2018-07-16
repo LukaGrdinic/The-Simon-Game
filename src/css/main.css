@@ -73,7 +73,7 @@ svg #yellowButton {
         outline: none; }
         #buttonBoard .button-section > div .button-rounded:active {
           border-style: inset; }
-      #buttonBoard .button-section > div #start-button {
+      #buttonBoard .button-section > div #startButton {
         background: green;
         border-color: green; }
       #buttonBoard .button-section > div #strict-button {
