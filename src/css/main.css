@@ -119,6 +119,9 @@ svg #yellowButton {
       #buttonBoard .button-section > div input:checked + .slider:after {
         background: radial-gradient(#d45e0f, orange); }
   #buttonBoard .counter-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 0.25rem; }
   #buttonBoard .counter-section > span {
     font-family: calculatorFont;
@@ -126,8 +129,10 @@ svg #yellowButton {
     font-size: 1.5rem;
     background: #3e2323;
     color: #d45252;
+    margin-left: 0.25rem;
     border: solid 1px black;
-    min-width: 60px; }
+    min-width: 60px;
+    min-height: 25px; }
 
 /* SMALL SCREENS HACK */
 @media (max-width: 650px) {

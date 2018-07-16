@@ -162,6 +162,9 @@ svg #yellowButton {
     }
     /* COUNTER */ // Counter should indicate if the game is ON or OFF
     .counter-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding-top: 0.25rem;
     }
     .counter-section>span {
@@ -170,8 +173,10 @@ svg #yellowButton {
         font-size: 1.5rem;
         background: #3e2323;
         color: $counterPink;
+        margin-left: 0.25rem;
         border: solid 1px black;
         min-width: 60px;
+        min-height: 25px;
     }
 }
 
