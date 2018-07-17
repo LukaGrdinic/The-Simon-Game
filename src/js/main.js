@@ -14,7 +14,8 @@ var game = {
     'level': 0,
     'userReady': false,
     'simonArray': [],
-    'userArray': []
+    'nextLevelArray': []
+    /* 'userArray': [] */
 }
 
 
@@ -37,14 +38,27 @@ startButton.addEventListener('click', function () {
         console.log('Start or Reset the Game');
         pickRandomColor();
         game.userReady = true;
-        counter.textContent = '0';
+        counter.textContent = game.level;
     }
 });
 
-colorShapes.forEach(function(colorShape) {
-    colorShape.addEventListener('click', function() {
+colorShapes.forEach(function (colorShape) {
+    colorShape.addEventListener('click', function () {
         if (game.userReady) {
-            game.userArray.push(this.id);
+            debugger;
+            /* game.userArray.push(this.id); */
+            if (this.id === game.simonArray[0]) {
+                game.nextLevelArray.push(this.id);
+                game.simonArray.shift();
+                if (game.simonArray.length === 0) {
+                    console.log('Level completed');
+                    game.level++;
+                    counter.textContent = game.level;
+                    pickRandomColor();
+                }
+            } else {
+                console.log('You missed a button!');
+            }
         }
     });
 });
@@ -52,16 +66,23 @@ colorShapes.forEach(function(colorShape) {
 /* GAME FUNCTIONS */
 
 function pickRandomColor() {
-    var randomNumber = Math.random();
+
+    let randomNumber = Math.random();
 
     if (randomNumber <= 0.25) {
-        game.simonArray.push('greenButton');
+        game.nextLevelArray.push('greenButton');
     } else if (0.25 < randomNumber && randomNumber <= 0.5) {
-        game.simonArray.push('redButton');
+        game.nextLevelArray.push('redButton');
     } else if (0.5 < randomNumber && randomNumber <= 0.75) {
-        game.simonArray.push('blueButton');
+        game.nextLevelArray.push('blueButton');
     } else if (0.75 < randomNumber && randomNumber <= 1) {
-        game.simonArray.push('yellowButton');
+        game.nextLevelArray.push('yellowButton');
     }
+
+    game.nextLevelArray.forEach(function(nextLevelColorShape) {
+        game.simonArray.push(nextLevelColorShape);
+    });
+
+    game.nextLevelArray = [];
 
 }
