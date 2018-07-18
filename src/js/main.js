@@ -2,6 +2,7 @@
 
 var powerButton = document.getElementById('powerButton');
 var startButton = document.getElementById('startButton');
+var strictButton = document.getElementById('strictButton');
 
 /* Color Shapes Buttons */
 
@@ -13,6 +14,7 @@ var game = {
     'powerOn': false,
     'level': 0,
     'userReady': false,
+    'strictMode': false,
     'simonArray': [],
     'nextLevelArray': []
 }
@@ -40,7 +42,13 @@ startButton.addEventListener('click', function () {
         game.userReady = true;
         counter.textContent = game.level;
         console.log(game.simonArray);
+    }
+});
 
+strictButton.addEventListener('click', function () {
+    if (game.powerOn) {
+        game.strictMode = !game.strictMode;
+        console.log('Strict mode: ' + game.strictMode);
     }
 });
 
@@ -48,7 +56,7 @@ colorShapes.forEach(function (colorShape) {
     colorShape.addEventListener('click', function () {
         if (game.userReady) {
             debugger;
-            if (this.id === game.simonArray[0]) {
+            if (this.id === game.simonArray[0]) { // On right button pressed
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
@@ -58,12 +66,16 @@ colorShapes.forEach(function (colorShape) {
                     pickRandomColor();
                     console.log(game.simonArray);
                 }
-            } else {
+            } else { // On wrong button pressed
                 console.log('You missed a button!');
-                game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
-                    game.simonArray.unshift(shiftedColorShape);
-                });
-                game.nextLevelArray = [];
+                if (game.strictMode) {
+                    resetGame();
+                } else {
+                    game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
+                        game.simonArray.unshift(shiftedColorShape);
+                    });
+                    game.nextLevelArray = [];
+                }
                 console.log(game.simonArray);
             }
         }
@@ -76,6 +88,7 @@ function resetGame() {
     game.level = 0;
     game.simonArray = [];
     game.nextLevelArray = [];
+    counter.textContent = game.level;
 }
 
 function pickRandomColor() {
