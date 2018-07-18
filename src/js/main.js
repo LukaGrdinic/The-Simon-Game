@@ -15,7 +15,6 @@ var game = {
     'userReady': false,
     'simonArray': [],
     'nextLevelArray': []
-    /* 'userArray': [] */
 }
 
 
@@ -40,6 +39,8 @@ startButton.addEventListener('click', function () {
         pickRandomColor();
         game.userReady = true;
         counter.textContent = game.level;
+        console.log(game.simonArray);
+
     }
 });
 
@@ -47,7 +48,6 @@ colorShapes.forEach(function (colorShape) {
     colorShape.addEventListener('click', function () {
         if (game.userReady) {
             debugger;
-            /* game.userArray.push(this.id); */
             if (this.id === game.simonArray[0]) {
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
@@ -56,9 +56,15 @@ colorShapes.forEach(function (colorShape) {
                     game.level++;
                     counter.textContent = game.level;
                     pickRandomColor();
+                    console.log(game.simonArray);
                 }
             } else {
                 console.log('You missed a button!');
+                game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
+                    game.simonArray.unshift(shiftedColorShape);
+                });
+                game.nextLevelArray = [];
+                console.log(game.simonArray);
             }
         }
     });
@@ -86,7 +92,7 @@ function pickRandomColor() {
         game.nextLevelArray.push('yellowButton');
     }
 
-    game.nextLevelArray.forEach(function(nextLevelColorShape) {
+    game.nextLevelArray.forEach(function (nextLevelColorShape) {
         game.simonArray.push(nextLevelColorShape);
     });
 
