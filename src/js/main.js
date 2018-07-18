@@ -36,6 +36,7 @@ powerButton.addEventListener('input', function () {
 startButton.addEventListener('click', function () {
     if (game.powerOn) {
         console.log('Start or Reset the Game');
+        resetGame();
         pickRandomColor();
         game.userReady = true;
         counter.textContent = game.level;
@@ -64,6 +65,12 @@ colorShapes.forEach(function (colorShape) {
 });
 
 /* GAME FUNCTIONS */
+
+function resetGame() {
+    game.level = 0;
+    game.simonArray = [];
+    game.nextLevelArray = [];
+}
 
 function pickRandomColor() {
 
