@@ -60,11 +60,16 @@ colorShapes.forEach(function (colorShape) {
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
-                    console.log('Level completed');
-                    game.level++;
-                    counter.textContent = game.level;
-                    pickRandomColor();
-                    console.log(game.simonArray);
+                    if (game.level === 20) {
+                        window.alert('Congratulations, You win!');
+                        resetGame();
+                    } else {
+                        console.log('Level completed');
+                        game.level++;
+                        counter.textContent = game.level;
+                        pickRandomColor();
+                        console.log(game.simonArray);
+                    }
                 }
             } else { // On wrong button pressed
                 console.log('You missed a button!');
