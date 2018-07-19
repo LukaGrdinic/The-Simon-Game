@@ -19,7 +19,6 @@ var game = {
     'nextLevelArray': []
 }
 
-
 /* ADD EVENT HANDLERS */
 
 /* If powerButton.checked , then the game is on */
@@ -29,7 +28,10 @@ powerButton.addEventListener('input', function () {
         game.powerOn = true;
         counter.textContent = '-';
     } else {
+        resetGame();
         game.powerOn = false;
+        game.userReady = false;
+        game.strictMode = false;
         counter.textContent = '';
     }
 });
@@ -40,13 +42,12 @@ startButton.addEventListener('click', function () {
         resetGame();
         pickRandomColor();
         game.userReady = true;
-        counter.textContent = game.level;
         console.log(game.simonArray);
     }
 });
 
 strictButton.addEventListener('click', function () {
-    if (game.powerOn) {
+    if (game.powerOn && game.userReady) {
         game.strictMode = !game.strictMode;
         console.log('Strict mode: ' + game.strictMode);
     }
@@ -55,7 +56,7 @@ strictButton.addEventListener('click', function () {
 colorShapes.forEach(function (colorShape) {
     colorShape.addEventListener('click', function () {
         if (game.userReady) {
-            debugger;
+            /* debugger; */
             if (this.id === game.simonArray[0]) { // On right button pressed
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
@@ -74,7 +75,9 @@ colorShapes.forEach(function (colorShape) {
             } else { // On wrong button pressed
                 console.log('You missed a button!');
                 if (game.strictMode) {
+                    console.log('You loose!');
                     resetGame();
+                    pickRandomColor();
                 } else {
                     game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
                         game.simonArray.unshift(shiftedColorShape);
