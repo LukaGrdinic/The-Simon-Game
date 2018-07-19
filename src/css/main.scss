@@ -45,6 +45,10 @@ svg #yellowButton {
     fill: $greenButtonDarker;
 }
 
+#greenButton.disabled {
+    pointer-events: none;
+}
+
 #redButton {
     fill: $redButton;
     &:hover {
@@ -58,6 +62,10 @@ svg #yellowButton {
 
 #redButton.highlighted {
     fill: $redButtonDarker;
+}
+
+#redButton.disabled {
+    pointer-events: none;
 }
 
 #blueButton {
@@ -74,6 +82,9 @@ svg #yellowButton {
 #blueButton.highlighted {
     fill: $blueButtonDarker;
 }
+#blueButton.disabled {
+    pointer-events: none;
+}
 
 #yellowButton {
     fill: $yellowButton;
@@ -88,6 +99,9 @@ svg #yellowButton {
 
 #yellowButton.highlighted {
     fill: $yellowButtonDarker;
+}
+#yellowButton.disabled {
+    pointer-events: none;
 }
 
 /* BUTTON BOARD */ // This is nested too much, I should separate things later on
@@ -194,7 +208,7 @@ svg #yellowButton {
         min-width: 70px;
         min-height: 25px;
         &>small {
-            font-size:1rem;
+            font-size: 1rem;
             float: left;
             visibility: hidden;
         }

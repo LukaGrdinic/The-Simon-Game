@@ -130,6 +130,14 @@ function indicateColorShapes(indexInSimonArray = 0) {
 
     debugger;
 
+    game.userReady = false;
+
+    /* Make another indication that the user can not make a move */
+
+    colorShapes.forEach(function (colorShape) { // wrap this in a function disablePointerEvents()
+        colorShape.classList.add('disabled');
+    });
+
     function highlightColorShape() {
         return new Promise(function (resolve) {
             setTimeout(function () {
@@ -149,8 +157,25 @@ function indicateColorShapes(indexInSimonArray = 0) {
             indexInSimonArray++;
             if (indexInSimonArray < game.simonArray.length) {
                 indicateColorShapes(indexInSimonArray);
+            } else {
+                game.userReady = true;
+                colorShapes.forEach(function (colorShape) { // wrap this in a function enablePointerEvents() or combine with disablePointerEvents
+                    colorShape.classList.remove('disabled');
+                });
             }
         }, 1000);
     });
 
+}
+
+function togglePointerEvents() { // enable and disable pointer events
+    if (!game.userReady) {
+        colorShapes.forEach(function (colorShape) {
+            colorShape.classList.add('disabled');
+        });
+    } else {
+        colorShapes.forEach(function (colorShape) {
+            colorShape.classList.remove('disabled');
+        });
+    }
 }
