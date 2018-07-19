@@ -41,6 +41,10 @@ svg #yellowButton {
     }
 }
 
+#greenButton.highlighted {
+    fill: $greenButtonDarker;
+}
+
 #redButton {
     fill: $redButton;
     &:hover {
@@ -50,6 +54,10 @@ svg #yellowButton {
         stroke: red;
         stroke-width: 3;
     }
+}
+
+#redButton.highlighted {
+    fill: $redButtonDarker;
 }
 
 #blueButton {
@@ -63,6 +71,10 @@ svg #yellowButton {
     }
 }
 
+#blueButton.highlighted {
+    fill: $blueButtonDarker;
+}
+
 #yellowButton {
     fill: $yellowButton;
     &:hover {
@@ -72,6 +84,10 @@ svg #yellowButton {
         stroke: yellow;
         stroke-width: 3;
     }
+}
+
+#yellowButton.highlighted {
+    fill: $yellowButtonDarker;
 }
 
 /* BUTTON BOARD */ // This is nested too much, I should separate things later on

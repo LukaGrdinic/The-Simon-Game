@@ -119,4 +119,42 @@ function pickRandomColor() {
 
     game.nextLevelArray = [];
 
+    indicateColorShapes();
+
+}
+
+function indicateColorShapes() {
+
+    debugger;
+
+    indicateSingleColorShape(0);
+
+    function indicateSingleColorShape(indexInSimonArray) {
+
+        function highlightColorShape() {
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
+                    indicatedColorShape.classList.add('highlighted');
+                    console.log('After one second the colorShape IS highlighted');
+                    resolve(indicatedColorShape);
+                }, 1000);
+            });
+        }
+
+        let colorShapeBeingIndicated = highlightColorShape();
+        colorShapeBeingIndicated.
+            then(function removeHighlightFromColorShape(highlightedColorShape) {
+                setTimeout(function () {
+                    highlightedColorShape.classList.remove('highlighted');
+                    console.log('After one more second the colorShape is NOT highlighted');
+                    indexInSimonArray++;
+                    if (indexInSimonArray < game.simonArray.length) {
+                    indicateSingleColorShape(indexInSimonArray);
+                    }
+                }, 1000);
+            });
+
+    }
+
 }
