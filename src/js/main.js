@@ -3,6 +3,7 @@
 var powerButton = document.getElementById('powerButton');
 var startButton = document.getElementById('startButton');
 var strictButton = document.getElementById('strictButton');
+var strictFlag = document.getElementById('strictFlag');
 
 /* Color Shapes Buttons */
 
@@ -49,6 +50,7 @@ startButton.addEventListener('click', function () {
 strictButton.addEventListener('click', function () {
     if (game.powerOn && game.userReady) {
         game.strictMode = !game.strictMode;
+        strictFlag.style.visibility = game.strictMode ? 'visible' : 'hidden';
         console.log('Strict mode: ' + game.strictMode);
     }
 });
