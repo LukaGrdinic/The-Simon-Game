@@ -83,6 +83,7 @@ colorShapes.forEach(function (colorShape) {
                         game.simonArray.unshift(shiftedColorShape);
                     });
                     game.nextLevelArray = [];
+                    indicateColorShapes();
                 }
                 console.log(game.simonArray);
             }
@@ -126,11 +127,9 @@ function pickRandomColor() {
 function indicateColorShapes() {
 
     debugger;
-
-    indicateSingleColorShape(0);
-
+    
     function indicateSingleColorShape(indexInSimonArray) {
-
+        
         function highlightColorShape() {
             return new Promise(function (resolve) {
                 setTimeout(function () {
@@ -141,20 +140,22 @@ function indicateColorShapes() {
                 }, 1000);
             });
         }
-
+        
         let colorShapeBeingIndicated = highlightColorShape();
         colorShapeBeingIndicated.
-            then(function removeHighlightFromColorShape(highlightedColorShape) {
-                setTimeout(function () {
-                    highlightedColorShape.classList.remove('highlighted');
-                    console.log('After one more second the colorShape is NOT highlighted');
-                    indexInSimonArray++;
-                    if (indexInSimonArray < game.simonArray.length) {
+        then(function removeHighlightFromColorShape(highlightedColorShape) {
+            setTimeout(function () {
+                highlightedColorShape.classList.remove('highlighted');
+                console.log('After one more second the colorShape is NOT highlighted');
+                indexInSimonArray++;
+                if (indexInSimonArray < game.simonArray.length) {
                     indicateSingleColorShape(indexInSimonArray);
-                    }
-                }, 1000);
-            });
-
+                }
+            }, 1000);
+        });
+        
     }
+    
+    indicateSingleColorShape(0);
 
 }
