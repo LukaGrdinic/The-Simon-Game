@@ -22,6 +22,12 @@ svg #yellowButton {
     stroke: green;
     stroke-width: 3; }
 
+#greenButton.highlighted {
+  fill: #0aa60a; }
+
+#greenButton.disabled {
+  pointer-events: none; }
+
 #redButton {
   fill: #e35c5c; }
   #redButton:hover {
@@ -29,6 +35,12 @@ svg #yellowButton {
   #redButton:active {
     stroke: red;
     stroke-width: 3; }
+
+#redButton.highlighted {
+  fill: #dd2626; }
+
+#redButton.disabled {
+  pointer-events: none; }
 
 #blueButton {
   fill: #7070f4; }
@@ -38,6 +50,12 @@ svg #yellowButton {
     stroke: blue;
     stroke-width: 3; }
 
+#blueButton.highlighted {
+  fill: #4d4dd5; }
+
+#blueButton.disabled {
+  pointer-events: none; }
+
 #yellowButton {
   fill: #f0f05e; }
   #yellowButton:hover {
@@ -45,6 +63,12 @@ svg #yellowButton {
   #yellowButton:active {
     stroke: yellow;
     stroke-width: 3; }
+
+#yellowButton.highlighted {
+  fill: #e6e612; }
+
+#yellowButton.disabled {
+  pointer-events: none; }
 
 /* BUTTON BOARD */
 #buttonBoard {
@@ -131,8 +155,13 @@ svg #yellowButton {
     color: #d45252;
     margin-left: 0.25rem;
     border: solid 1px black;
-    min-width: 60px;
+    min-width: 75px;
+    max-width: 75px;
     min-height: 25px; }
+    #buttonBoard .counter-section > span > small {
+      font-size: 1rem;
+      float: left;
+      visibility: hidden; }
 
 /* SMALL SCREENS HACK */
 @media (max-width: 650px) {

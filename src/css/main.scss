@@ -205,7 +205,8 @@ svg #yellowButton {
         color: $counterPink;
         margin-left: 0.25rem;
         border: solid 1px black;
-        min-width: 70px;
+        min-width: 75px;
+        max-width: 75px;
         min-height: 25px;
         &>small {
             font-size: 1rem;

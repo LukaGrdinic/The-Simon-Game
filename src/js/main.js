@@ -75,7 +75,8 @@ colorShapes.forEach(function (colorShape) {
                     }
                 }
             } else { // On wrong button pressed
-                console.log('You missed a button!');
+                console.log('You pressed the wrong button');
+                counter.textContent = 'ERR';
                 if (game.strictMode) {
                     console.log('You loose!');
                     resetGame();
