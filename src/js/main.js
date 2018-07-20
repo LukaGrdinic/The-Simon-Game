@@ -76,7 +76,7 @@ colorShapes.forEach(function (colorShape) {
                 }
             } else { // On wrong button pressed
                 console.log('You pressed the wrong button');
-                counter.textContent = 'ERR';
+                indicateUserMistake();
                 if (game.strictMode) {
                     console.log('You loose!');
                     resetGame();
@@ -129,7 +129,7 @@ function pickRandomColor() {
 
 function indicateColorShapes(indexInSimonArray = 0) {
 
-    debugger;
+    /* debugger; */
 
     game.userReady = false;
 
@@ -163,6 +163,28 @@ function indicateColorShapes(indexInSimonArray = 0) {
         }, 1000);
     });
 
+}
+
+function indicateUserMistake() {
+    debugger;
+    game.userReady = false;
+    /* console.log('Show ERROR in the counter for 1 second'); */
+    function startMistakeIndication() {
+        return new Promise(function (resolve) {
+            setTimeout(function () {
+                console.log('Let the stuff start');
+                counter.textContent = 'ERR';
+                resolve();
+            }, 1000);
+        });
+    }
+    let mistakeStatus = startMistakeIndication();
+    mistakeStatus.then(function () {
+        setTimeout(function () {
+            console.log('The stuff should now end');
+            counter.textContent = game.level;
+        }, 1000);
+    });
 }
 
 function togglePointerEvents() { // enable and disable pointer events
