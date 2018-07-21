@@ -75,20 +75,22 @@ colorShapes.forEach(function (colorShape) {
                     }
                 }
             } else { // On wrong button pressed
+                debugger;
                 console.log('You pressed the wrong button');
-                indicateUserMistake();
-                if (game.strictMode) {
-                    console.log('You loose!');
-                    resetGame();
-                    pickRandomColor();
-                } else {
-                    game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
-                        game.simonArray.unshift(shiftedColorShape);
-                    });
-                    game.nextLevelArray = [];
-                    indicateColorShapes();
-                }
-                console.log(game.simonArray);
+                let mistakeIndicated = indicateUserMistake();
+                mistakeIndicated.then(function handleUserMistake() {
+                    if (game.strictMode) {
+                        console.log('You loose!');
+                        resetGame();
+                        pickRandomColor();
+                    } else {
+                        game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
+                            game.simonArray.unshift(shiftedColorShape);
+                        });
+                        game.nextLevelArray = [];
+                        indicateColorShapes();
+                    }
+                });
             }
         }
     });
@@ -166,24 +168,19 @@ function indicateColorShapes(indexInSimonArray = 0) {
 }
 
 function indicateUserMistake() {
+
     debugger;
-    game.userReady = false;
-    /* console.log('Show ERROR in the counter for 1 second'); */
-    function startMistakeIndication() {
-        return new Promise(function (resolve) {
-            setTimeout(function () {
-                console.log('Let the stuff start');
-                counter.textContent = 'ERR';
-                resolve();
-            }, 1000);
-        });
-    }
-    let mistakeStatus = startMistakeIndication();
-    mistakeStatus.then(function () {
+
+    return new Promise(function (resolve) {
+        game.userReady = false;
+        togglePointerEvents();
+        counter.textContent = 'ERR';
         setTimeout(function () {
-            console.log('The stuff should now end');
             counter.textContent = game.level;
-        }, 1000);
+            game.userReady = true;
+            togglePointerEvents();
+            resolve();
+        }, 2000);
     });
 }
 
