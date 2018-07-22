@@ -5,6 +5,10 @@ var startButton = document.getElementById('startButton');
 var strictButton = document.getElementById('strictButton');
 var strictFlag = document.getElementById('strictFlag');
 
+/* SOUNDS */
+
+var sound = new Audio();
+
 /* Color Shapes Buttons */
 
 var colorShapes = document.querySelectorAll('.colorShape');
@@ -60,6 +64,8 @@ colorShapes.forEach(function (colorShape) {
         if (game.userReady) {
             /* debugger; */
             if (this.id === game.simonArray[0]) { // On right button pressed
+                sound.src = `sounds/fcc-sounds/${this.id}.mp3`;
+                sound.play();
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
