@@ -73,7 +73,10 @@ colorShapes.forEach(function (colorShape) {
                 if (game.simonArray.length === 0) {
                     if (game.level === 20) {
                         window.alert('Congratulations, You win!');
-                        resetGame();
+                        let victoryIndicated = indicateVictory();
+                        victoryIndicated.then(function () {
+                            resetGame();
+                        });
                     } else {
                         console.log('Level completed');
                         game.level++;
@@ -83,7 +86,7 @@ colorShapes.forEach(function (colorShape) {
                     }
                 }
             } else { // On wrong button pressed
-                debugger;
+                /* debugger; */
                 console.log('You pressed the wrong button');
                 let mistakeIndicated = indicateUserMistake();
                 mistakeIndicated.then(function handleUserMistake() {
@@ -177,7 +180,7 @@ function indicateColorShapes(indexInSimonArray = 0) {
 
 function indicateUserMistake() {
 
-    debugger;
+    /* debugger; */
 
     return new Promise(function (resolve) {
         game.userReady = false;
@@ -190,6 +193,54 @@ function indicateUserMistake() {
             resolve();
         }, 2000);
     });
+}
+
+function indicateVictory() {
+
+    game.userReady = false;
+    togglePointerEvents();
+
+    /* Making the whole function return a Promise - not sure if it could be better,cleaner */
+
+    return new Promise(function (resolve) {
+
+        function highlightCarousel(colorIndex = 0, indicationLoop = 1) {
+            
+            function highlightColorShapes() {
+                return new Promise(function (resolve) {
+                    setTimeout(function () {
+                        let colorShape = colorShapes[colorIndex];
+                        colorShape.classList.add('highlighted');
+                        resolve(colorShape);
+                    }, 100);
+                });
+            }
+
+            let indicatedShape = highlightColorShapes();
+            indicatedShape.then(function (colorShape) {
+                setTimeout(function () {
+                    colorShape.classList.remove('highlighted');
+                    if (colorIndex < colorShapes.length - 1) {
+                        colorIndex++;
+                        highlightCarousel(colorIndex, indicationLoop);
+                    } else {
+                        if (indicationLoop < 5) {
+                            colorIndex = 0;
+                            indicationLoop++;
+                            highlightCarousel(colorIndex, indicationLoop);
+                        } else {
+                            game.userReady = true;
+                            togglePointerEvents();
+                            resolve();
+                        }
+                    }
+                }, 100);
+            });
+        }
+
+        highlightCarousel();
+    });
+
 }
 
 function togglePointerEvents() { // enable and disable pointer events
@@ -205,7 +256,6 @@ function togglePointerEvents() { // enable and disable pointer events
 }
 
 /* EXAMPLE OF TONE.JS USAGE */
-
 
 //create a synth and connect it to the master output (your speakers)
 var synth = new Tone.Synth().toMaster();
