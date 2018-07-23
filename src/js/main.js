@@ -40,6 +40,7 @@ powerButton.addEventListener('input', function () {
         game.userReady = false;
         game.strictMode = false;
         counter.textContent = '';
+        strictFlag.style.visibility = game.strictMode ? 'visible' : 'hidden';
     }
 });
 
