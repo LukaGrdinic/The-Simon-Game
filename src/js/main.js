@@ -9,8 +9,8 @@ var strictFlag = document.getElementById('strictFlag');
 
 /* SOUNDS */
 
-var sound = new Audio();
-
+//create a synth and connect it to the master output (your speakers)
+var synth = new Tone.Synth().toMaster();
 /* Color Shapes Buttons */
 
 var colorShapes = document.querySelectorAll('.colorShape');
@@ -23,7 +23,13 @@ var game = {
     'userReady': false,
     'strictMode': false,
     'simonArray': [],
-    'nextLevelArray': []
+    'nextLevelArray': [],
+    'adequateSounds': {
+        'greenButton': 'C4',
+        'redButton': 'D4',
+        'blueButton': 'E4',
+        'yellowButton': 'F4'
+    }
 }
 
 /* ADD EVENT HANDLERS */
@@ -67,8 +73,6 @@ colorShapes.forEach(function (colorShape) {
         if (game.userReady) {
             /* debugger; */
             if (this.id === game.simonArray[0]) { // On right button pressed
-                sound.src = `sounds/fcc-sounds/${this.id}.mp3`;
-                sound.play();
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
@@ -104,6 +108,21 @@ colorShapes.forEach(function (colorShape) {
                     }
                 });
             }
+        }
+    });
+    /* Adding sound effects based on how long the mouse is pressed down */
+    colorShape.addEventListener('mousedown', function () {
+        if (game.userReady) {
+            if (this.id === game.simonArray[0]) {
+                synth.triggerAttack(game.adequateSounds[this.id]);
+            } else {
+                synth.triggerAttackRelease('C3', "1n");
+            }
+        }
+    });
+    colorShape.addEventListener('mouseup', function () {
+        if (this.id === game.simonArray[0]) {
+            synth.triggerRelease();
         }
     });
 });
@@ -206,7 +225,7 @@ function indicateVictory() {
     return new Promise(function (resolve) {
 
         function highlightCarousel(colorIndex = 0, indicationLoop = 1) {
-            
+
             function highlightColorShapes() {
                 return new Promise(function (resolve) {
                     setTimeout(function () {
@@ -255,11 +274,3 @@ function togglePointerEvents() { // enable and disable pointer events
         });
     }
 }
-
-/* EXAMPLE OF TONE.JS USAGE */
-
-//create a synth and connect it to the master output (your speakers)
-var synth = new Tone.Synth().toMaster();
-
-//play a middle 'C' for the duration of an 8th note
-synth.triggerAttackRelease("C4", "8n");
