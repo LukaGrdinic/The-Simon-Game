@@ -11,6 +11,7 @@ var strictFlag = document.getElementById('strictFlag');
 
 //create a synth and connect it to the master output (your speakers)
 var synth = new Tone.Synth().toMaster();
+var synthMistake = new Tone.Synth().toMaster();
 /* Color Shapes Buttons */
 
 var colorShapes = document.querySelectorAll('.colorShape');
@@ -119,6 +120,9 @@ colorShapes.forEach(function (colorShape) {
     colorShape.addEventListener('mouseup', function () {
         synth.triggerRelease();
     });
+    colorShape.addEventListener('mouseleave', function() {
+        synth.triggerRelease();
+    });
 });
 
 /* GAME FUNCTIONS */
@@ -196,7 +200,7 @@ function indicateUserMistake() {
 
     /* debugger; */
 
-    synth.triggerAttackRelease('C3', "1n"); /* Play the loose sound */
+    synthMistake.triggerAttackRelease('C3', "1n"); /* Play the loose sound */
 
     return new Promise(function (resolve) {
         game.userReady = false;
