@@ -113,17 +113,11 @@ colorShapes.forEach(function (colorShape) {
     /* Adding sound effects based on how long the mouse is pressed down */
     colorShape.addEventListener('mousedown', function () {
         if (game.userReady) {
-            if (this.id === game.simonArray[0]) {
-                synth.triggerAttack(game.adequateSounds[this.id]);
-            } else {
-                synth.triggerAttackRelease('C3', "1n");
-            }
+            synth.triggerAttack(game.adequateSounds[this.id]);
         }
     });
     colorShape.addEventListener('mouseup', function () {
-        if (this.id === game.simonArray[0]) {
-            synth.triggerRelease();
-        }
+        synth.triggerRelease();
     });
 });
 
@@ -201,6 +195,8 @@ function indicateColorShapes(indexInSimonArray = 0) {
 function indicateUserMistake() {
 
     /* debugger; */
+
+    synth.triggerAttackRelease('C3', "1n"); /* Play the loose sound */
 
     return new Promise(function (resolve) {
         game.userReady = false;
