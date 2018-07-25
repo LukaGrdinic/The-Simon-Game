@@ -32,7 +32,8 @@ var game = {
         'blueButton': 'E4',
         'yellowButton': 'F4'
     },
-    'indicationDuration': 800
+    'indicationDuration': 800,
+    'timeToRespond': 3000
 }
 
 /* ADD EVENT HANDLERS */
@@ -76,6 +77,7 @@ colorShapes.forEach(function (colorShape) {
         if (game.userReady) {
             /* debugger; */
             if (this.id === game.simonArray[0]) { // On right button pressed
+                resetTimeToRespond();
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
@@ -136,6 +138,7 @@ function resetGame() {
     game.nextLevelArray = [];
     counter.textContent = game.level;
     game.indicationDuration = 800;
+    resetTimeToRespond();
 }
 
 function pickRandomColor() {
@@ -199,6 +202,8 @@ function indicateColorShapes(indexInSimonArray = 0) {
             } else {
                 game.userReady = true;
                 togglePointerEvents();
+                debugger;
+                waitForUserResponse();
             }
         }, game.indicationDuration);
     });
@@ -287,4 +292,40 @@ function togglePointerEvents() { // enable and disable pointer events
 function updateIndicationDuration() {
     console.log('Increase the speed');
     game.indicationDuration = 800 - game.level * 35;
+}
+
+function waitForUserResponse() {
+    /* debugger; */
+    if (game.timeToRespond <= 0) {
+        looseTheGame();
+        resetTimeToRespond();
+    } else {
+        console.log(game.timeToRespond);
+        setTimeout(function () { /* Something is not right here */
+            game.timeToRespond -= 1000;
+            waitForUserResponse();
+        }, 1000);
+    }
+}
+
+function resetTimeToRespond() {
+    game.timeToRespond = 3000;
+}
+
+function looseTheGame() {
+    console.log('Now the loosing function should occur');
+    let mistakeIndicated = indicateUserMistake();
+    mistakeIndicated.then(function handleUserMistake() {
+        if (game.strictMode) {
+            console.log('You loose!');
+            resetGame();
+            pickRandomColor();
+        } else {
+            game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
+                game.simonArray.unshift(shiftedColorShape);
+            });
+            game.nextLevelArray = [];
+            indicateColorShapes();
+        }
+    });
 }
