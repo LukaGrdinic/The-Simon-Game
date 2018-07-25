@@ -135,7 +135,7 @@ function resetGame() {
     game.simonArray = [];
     game.nextLevelArray = [];
     counter.textContent = game.level;
-    game.indicationDuration = 1000;
+    game.indicationDuration = 800;
 }
 
 function pickRandomColor() {
