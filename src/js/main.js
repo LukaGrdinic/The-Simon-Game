@@ -33,7 +33,8 @@ var game = {
         'yellowButton': 'F4'
     },
     'indicationDuration': 800,
-    'timeToRespond': 3000
+    'timeToRespond': 10000,
+    'userResponseInterval': 0
 }
 
 /* ADD EVENT HANDLERS */
@@ -56,11 +57,9 @@ powerButton.addEventListener('input', function () {
 
 startButton.addEventListener('click', function () {
     if (game.powerOn) {
-        console.log('Start or Reset the Game');
         resetGame();
         pickRandomColor();
         game.userReady = true;
-        console.log(game.simonArray);
     }
 });
 
@@ -88,21 +87,17 @@ colorShapes.forEach(function (colorShape) {
                             resetGame();
                         });
                     } else {
-                        console.log('Level completed');
                         game.level++;
                         updateIndicationDuration();
                         counter.textContent = game.level;
                         pickRandomColor();
-                        console.log(game.simonArray);
                     }
                 }
             } else { // On wrong button pressed
                 /* debugger; */
-                console.log('You pressed the wrong button');
                 let mistakeIndicated = indicateUserMistake();
                 mistakeIndicated.then(function handleUserMistake() {
                     if (game.strictMode) {
-                        console.log('You loose!');
                         resetGame();
                         pickRandomColor();
                     } else {
@@ -167,7 +162,7 @@ function pickRandomColor() {
 
 function indicateColorShapes(indexInSimonArray = 0) {
 
-    /* debugger; */
+    debugger;
 
     game.userReady = false;
 
@@ -181,9 +176,7 @@ function indicateColorShapes(indexInSimonArray = 0) {
                 /* debugger; */
                 let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
                 indicatedColorShape.classList.add('highlighted');
-                console.log('After one second the colorShape IS highlighted');
                 synthBySimon.triggerAttack(game.adequateSounds[indicatedColorShape.id]);
-                console.log('The sound plays for ' + indicatedColorShape.id);
                 resolve(indicatedColorShape);
             }, game.indicationDuration);
         });
@@ -193,16 +186,15 @@ function indicateColorShapes(indexInSimonArray = 0) {
     colorShapeBeingIndicated.then(function removeHighlightFromColorShape(highlightedColorShape) {
         setTimeout(function () {
             highlightedColorShape.classList.remove('highlighted');
-            console.log('After one more second the colorShape is NOT highlighted');
             synthBySimon.triggerRelease();
-            console.log('The sound stops playing');
             indexInSimonArray++;
             if (indexInSimonArray < game.simonArray.length) {
                 indicateColorShapes(indexInSimonArray);
             } else {
                 game.userReady = true;
                 togglePointerEvents();
-                debugger;
+                console.log('Moment when waiting gets faster'); /* THIS IS WHERE THE PROBLEM IS */
+                clearInterval(game.userResponseInterval);
                 waitForUserResponse();
             }
         }, game.indicationDuration);
@@ -290,26 +282,26 @@ function togglePointerEvents() { // enable and disable pointer events
 }
 
 function updateIndicationDuration() {
-    console.log('Increase the speed');
     game.indicationDuration = 800 - game.level * 35;
 }
 
 function waitForUserResponse() {
-    /* debugger; */
+
+    game.userResponseInterval = setInterval(() => {
+        game.timeToRespond -= 1000;
+        console.log(game.timeToRespond);
+        console.log(game.userResponseInterval);
+    }, 1000);
+}
+
+function checkUserResponse() {
     if (game.timeToRespond <= 0) {
         looseTheGame();
-        resetTimeToRespond();
-    } else {
-        console.log(game.timeToRespond);
-        setTimeout(function () { /* Something is not right here */
-            game.timeToRespond -= 1000;
-            waitForUserResponse();
-        }, 1000);
     }
 }
 
 function resetTimeToRespond() {
-    game.timeToRespond = 3000;
+    game.timeToRespond = 10000;
 }
 
 function looseTheGame() {
@@ -317,7 +309,6 @@ function looseTheGame() {
     let mistakeIndicated = indicateUserMistake();
     mistakeIndicated.then(function handleUserMistake() {
         if (game.strictMode) {
-            console.log('You loose!');
             resetGame();
             pickRandomColor();
         } else {
