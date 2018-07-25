@@ -31,7 +31,8 @@ var game = {
         'redButton': 'D4',
         'blueButton': 'E4',
         'yellowButton': 'F4'
-    }
+    },
+    'indicationDuration': 1000
 }
 
 /* ADD EVENT HANDLERS */
@@ -87,6 +88,7 @@ colorShapes.forEach(function (colorShape) {
                     } else {
                         console.log('Level completed');
                         game.level++;
+                        updateIndicationDuration();
                         counter.textContent = game.level;
                         pickRandomColor();
                         console.log(game.simonArray);
@@ -121,7 +123,7 @@ colorShapes.forEach(function (colorShape) {
     colorShape.addEventListener('mouseup', function () {
         synthByUser.triggerRelease();
     });
-    colorShape.addEventListener('mouseleave', function() {
+    colorShape.addEventListener('mouseleave', function () {
         synthByUser.triggerRelease();
     });
 });
@@ -133,6 +135,7 @@ function resetGame() {
     game.simonArray = [];
     game.nextLevelArray = [];
     counter.textContent = game.level;
+    game.indicationDuration = 1000;
 }
 
 function pickRandomColor() {
@@ -172,14 +175,14 @@ function indicateColorShapes(indexInSimonArray = 0) {
     function highlightColorShape() {
         return new Promise(function (resolve) {
             setTimeout(function () {
-                debugger;
+                /* debugger; */
                 let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
                 indicatedColorShape.classList.add('highlighted');
                 console.log('After one second the colorShape IS highlighted');
                 synthBySimon.triggerAttack(game.adequateSounds[indicatedColorShape.id]);
                 console.log('The sound plays for ' + indicatedColorShape.id);
                 resolve(indicatedColorShape);
-            }, 1000);
+            }, game.indicationDuration);
         });
     }
 
@@ -197,7 +200,7 @@ function indicateColorShapes(indexInSimonArray = 0) {
                 game.userReady = true;
                 togglePointerEvents();
             }
-        }, 1000);
+        }, game.indicationDuration);
     });
 
 }
@@ -206,7 +209,7 @@ function indicateUserMistake() {
 
     /* debugger; */
 
-    synthMistake.triggerAttackRelease('C3', "1n"); /* Play the loose sound */
+    synthMistake.triggerAttackRelease('C3', `${game.indicationDuration / 1000}s`); /* Play the loose sound */
 
     return new Promise(function (resolve) {
         game.userReady = false;
@@ -279,4 +282,9 @@ function togglePointerEvents() { // enable and disable pointer events
             colorShape.classList.remove('disabled');
         });
     }
+}
+
+function updateIndicationDuration() {
+    console.log('Increase the speed');
+    game.indicationDuration = 1000 - game.level * 40;
 }
