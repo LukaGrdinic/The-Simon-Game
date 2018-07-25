@@ -10,7 +10,8 @@ var strictFlag = document.getElementById('strictFlag');
 /* SOUNDS */
 
 //create a synth and connect it to the master output (your speakers)
-var synth = new Tone.Synth().toMaster();
+var synthByUser = new Tone.Synth().toMaster();
+var synthBySimon = new Tone.Synth().toMaster();
 var synthMistake = new Tone.Synth().toMaster();
 /* Color Shapes Buttons */
 
@@ -114,14 +115,14 @@ colorShapes.forEach(function (colorShape) {
     /* Adding sound effects based on how long the mouse is pressed down */
     colorShape.addEventListener('mousedown', function () {
         if (game.userReady) {
-            synth.triggerAttack(game.adequateSounds[this.id]);
+            synthByUser.triggerAttack(game.adequateSounds[this.id]);
         }
     });
     colorShape.addEventListener('mouseup', function () {
-        synth.triggerRelease();
+        synthByUser.triggerRelease();
     });
     colorShape.addEventListener('mouseleave', function() {
-        synth.triggerRelease();
+        synthByUser.triggerRelease();
     });
 });
 
@@ -171,9 +172,12 @@ function indicateColorShapes(indexInSimonArray = 0) {
     function highlightColorShape() {
         return new Promise(function (resolve) {
             setTimeout(function () {
+                debugger;
                 let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
                 indicatedColorShape.classList.add('highlighted');
                 console.log('After one second the colorShape IS highlighted');
+                synthBySimon.triggerAttack(game.adequateSounds[indicatedColorShape.id]);
+                console.log('The sound plays for ' + indicatedColorShape.id);
                 resolve(indicatedColorShape);
             }, 1000);
         });
@@ -184,6 +188,8 @@ function indicateColorShapes(indexInSimonArray = 0) {
         setTimeout(function () {
             highlightedColorShape.classList.remove('highlighted');
             console.log('After one more second the colorShape is NOT highlighted');
+            synthBySimon.triggerRelease();
+            console.log('The sound stops playing');
             indexInSimonArray++;
             if (indexInSimonArray < game.simonArray.length) {
                 indicateColorShapes(indexInSimonArray);
