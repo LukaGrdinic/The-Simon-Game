@@ -77,6 +77,7 @@ colorShapes.forEach(function (colorShape) {
             /* debugger; */
             if (this.id === game.simonArray[0]) { // On right button pressed
                 resetTimeToRespond();
+                clearInterval(game.userResponseInterval);
                 game.nextLevelArray.push(this.id);
                 game.simonArray.shift();
                 if (game.simonArray.length === 0) {
@@ -173,7 +174,7 @@ function indicateColorShapes(indexInSimonArray = 0) {
     function highlightColorShape() {
         return new Promise(function (resolve) {
             setTimeout(function () {
-                /* debugger; */
+                debugger;
                 let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
                 indicatedColorShape.classList.add('highlighted');
                 synthBySimon.triggerAttack(game.adequateSounds[indicatedColorShape.id]);
@@ -193,9 +194,9 @@ function indicateColorShapes(indexInSimonArray = 0) {
             } else {
                 game.userReady = true;
                 togglePointerEvents();
-                console.log('Moment when waiting gets faster'); /* THIS IS WHERE THE PROBLEM IS */
                 clearInterval(game.userResponseInterval);
                 waitForUserResponse();
+                console.log('Moment when waitForUserResponse starts'); /* THIS IS WHERE THE PROBLEM IS */
             }
         }, game.indicationDuration);
     });
