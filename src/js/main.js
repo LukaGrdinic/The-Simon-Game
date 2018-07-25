@@ -32,7 +32,7 @@ var game = {
         'blueButton': 'E4',
         'yellowButton': 'F4'
     },
-    'indicationDuration': 1000
+    'indicationDuration': 800
 }
 
 /* ADD EVENT HANDLERS */
@@ -286,5 +286,5 @@ function togglePointerEvents() { // enable and disable pointer events
 
 function updateIndicationDuration() {
     console.log('Increase the speed');
-    game.indicationDuration = 1000 - game.level * 40;
+    game.indicationDuration = 800 - game.level * 35;
 }
