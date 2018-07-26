@@ -33,7 +33,7 @@ var game = {
         'yellowButton': 'F4'
     },
     'indicationDuration': 800,
-    'timeToRespond': 10000,
+    'timeToRespond': 5000,
     'userResponseInterval': 0
 }
 
@@ -96,6 +96,8 @@ colorShapes.forEach(function (colorShape) {
                 }
             } else { // On wrong button pressed
                 /* debugger; */
+                resetTimeToRespond();
+                clearInterval(game.userResponseInterval);
                 let mistakeIndicated = indicateUserMistake();
                 mistakeIndicated.then(function handleUserMistake() {
                     if (game.strictMode) {
@@ -135,6 +137,7 @@ function resetGame() {
     counter.textContent = game.level;
     game.indicationDuration = 800;
     resetTimeToRespond();
+    clearInterval(game.userResponseInterval);
 }
 
 function pickRandomColor() {
@@ -163,8 +166,6 @@ function pickRandomColor() {
 
 function indicateColorShapes(indexInSimonArray = 0) {
 
-    debugger;
-
     game.userReady = false;
 
     /* Make another indication that the user can not make a move */
@@ -174,7 +175,7 @@ function indicateColorShapes(indexInSimonArray = 0) {
     function highlightColorShape() {
         return new Promise(function (resolve) {
             setTimeout(function () {
-                debugger;
+                /* debugger; */
                 let indicatedColorShape = document.querySelector('#' + game.simonArray[indexInSimonArray]);
                 indicatedColorShape.classList.add('highlighted');
                 synthBySimon.triggerAttack(game.adequateSounds[indicatedColorShape.id]);
@@ -287,22 +288,25 @@ function updateIndicationDuration() {
 }
 
 function waitForUserResponse() {
+    /* debugger; */
 
     game.userResponseInterval = setInterval(() => {
         game.timeToRespond -= 1000;
         console.log(game.timeToRespond);
-        console.log(game.userResponseInterval);
+        checkUserResponse();
     }, 1000);
 }
 
 function checkUserResponse() {
     if (game.timeToRespond <= 0) {
+        resetTimeToRespond();
         looseTheGame();
     }
 }
 
 function resetTimeToRespond() {
-    game.timeToRespond = 10000;
+    game.timeToRespond = 5000;
+    clearInterval(game.userResponseInterval);
 }
 
 function looseTheGame() {
