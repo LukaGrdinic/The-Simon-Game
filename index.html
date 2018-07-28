@@ -49,16 +49,17 @@
         <!--  width="650" height="650" -->
         <svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <!-- Filter for the outer circle to achieve shadow -->
-            <!-- <defs>
+            <defs>
                 <filter id="filter1" x="0" y="0">
                     <feOffset result="offOut" in="SourceGraphic" dx="5" dy="5" />
-                    <feGaussianBlur result="blurOut" stdDeviation="10" />
+                    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
                     <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
-            </defs> -->
+            </defs>
             <!-- Outer and inner circle -->
             <circle id="circle_outer" r="235" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
-                stroke-width="20" stroke="#3C3C3C" fill="none"  /> <!-- filter="url(#filter1)" -->
+                stroke-width="20" stroke="#3C3C3C" fill="none" filter="url(#filter1)" />
+            <!-- filter="url(#filter1)" -->
             <circle id="circle_inner" r="135" cy="325" cx="325" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null"
                 stroke-width="30" stroke="#3C3C3C" fill="gray" />
             <path d="M215 325 L435 325 A 110 110 0 0 0 215 325" stroke="black" stroke-width="1"></path>
