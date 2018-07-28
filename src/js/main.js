@@ -98,19 +98,7 @@ colorShapes.forEach(function (colorShape) {
                 /* debugger; */
                 resetTimeToRespond();
                 clearInterval(game.userResponseInterval);
-                let mistakeIndicated = indicateUserMistake();
-                mistakeIndicated.then(function handleUserMistake() {
-                    if (game.strictMode) {
-                        resetGame();
-                        pickRandomColor();
-                    } else {
-                        game.nextLevelArray.reverse().forEach(function (shiftedColorShape) {
-                            game.simonArray.unshift(shiftedColorShape);
-                        });
-                        game.nextLevelArray = [];
-                        indicateColorShapes();
-                    }
-                });
+                looseTheGame();
             }
         }
     });
@@ -271,6 +259,15 @@ function indicateVictory() {
 
 }
 
+function delayedFunc(func, timeout) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            func();
+            resolve();
+        }, timeout);
+    });
+}
+
 function togglePointerEvents() { // enable and disable pointer events
     if (!game.userReady) {
         colorShapes.forEach(function (colorShape) {
@@ -287,8 +284,9 @@ function updateIndicationDuration() {
     game.indicationDuration = 800 - game.level * 35;
 }
 
+/* USER RESPONSE HANDLING */
+
 function waitForUserResponse() {
-    /* debugger; */
 
     game.userResponseInterval = setInterval(() => {
         game.timeToRespond -= 1000;
@@ -308,6 +306,8 @@ function resetTimeToRespond() {
     game.timeToRespond = 5000;
     clearInterval(game.userResponseInterval);
 }
+
+/* LOOSING THE GAME */
 
 function looseTheGame() {
     console.log('Now the loosing function should occur');
