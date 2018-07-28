@@ -5,70 +5,66 @@
   font-family: calculatorFont;
   src: url(../../fonts/calculatorFont/digital-7.ttf);
   font-display: swap; }
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.container {
+  position: relative;
+  text-align: center;
+  user-select: none;
+  overflow-x: auto; }
+
 /* COLOR SHAPES */
-svg #greenButton,
-svg #redButton,
-svg #blueButton,
-svg #yellowButton {
+svg [id*="Button"] {
   cursor: pointer; }
+  svg [id*="Button"].disabled {
+    pointer-events: none; }
 
 #greenButton {
-  /* Should use a mixin for the big buttons */
-  /* Hover stands as a color variant when button is clicked */
   fill: #39c339; }
   #greenButton:hover {
-    fill: #0aa60a; }
+    fill: #2d9c2d; }
   #greenButton:active {
-    stroke: green;
-    stroke-width: 3; }
-
-#greenButton.highlighted {
-  fill: #0aa60a; }
-
-#greenButton.disabled {
-  pointer-events: none; }
+    stroke-width: 3;
+    stroke: green; }
+  #greenButton.highlighted {
+    fill: #2d9c2d; }
 
 #redButton {
   fill: #e35c5c; }
   #redButton:hover {
-    fill: #dd2626; }
+    fill: #dc3030; }
   #redButton:active {
-    stroke: red;
-    stroke-width: 3; }
-
-#redButton.highlighted {
-  fill: #dd2626; }
-
-#redButton.disabled {
-  pointer-events: none; }
+    stroke-width: 3;
+    stroke: red; }
+  #redButton.highlighted {
+    fill: #dc3030; }
 
 #blueButton {
   fill: #7070f4; }
   #blueButton:hover {
-    fill: #4d4dd5; }
+    fill: #4141f0; }
   #blueButton:active {
-    stroke: blue;
-    stroke-width: 3; }
-
-#blueButton.highlighted {
-  fill: #4d4dd5; }
-
-#blueButton.disabled {
-  pointer-events: none; }
+    stroke-width: 3;
+    stroke: blue; }
+  #blueButton.highlighted {
+    fill: #4141f0; }
 
 #yellowButton {
   fill: #f0f05e; }
   #yellowButton:hover {
-    fill: #e6e612; }
+    fill: #ecec2f; }
   #yellowButton:active {
-    stroke: yellow;
-    stroke-width: 3; }
-
-#yellowButton.highlighted {
-  fill: #e6e612; }
-
-#yellowButton.disabled {
-  pointer-events: none; }
+    stroke-width: 3;
+    stroke: yellow; }
+  #yellowButton.highlighted {
+    fill: #ecec2f; }
 
 /* BUTTON BOARD */
 #buttonBoard {
@@ -78,70 +74,74 @@ svg #yellowButton {
   transform: translate(-50%, -40%);
   /* COUNTER */ }
   #buttonBoard h1 {
-    font-family: 'Montserrat', sans-serif; }
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    color: gray;
+    margin: 0;
+    padding-bottom: 1rem; }
   #buttonBoard .button-section {
     display: flex;
     align-items: center; }
-    #buttonBoard .button-section > div {
-      margin: 0.5rem;
-      /* TOGGLE SWITCH */
-      /* Hide default HTML checkbox */
-      /* The slider */ }
-      #buttonBoard .button-section > div label {
-        display: block; }
-      #buttonBoard .button-section > div .button-rounded {
-        border-radius: 50%;
-        height: 20px;
-        width: 20px;
-        border-style: outset;
-        outline: none; }
-        #buttonBoard .button-section > div .button-rounded:active {
-          border-style: inset; }
-      #buttonBoard .button-section > div #startButton {
-        background: green;
-        border-color: green; }
-      #buttonBoard .button-section > div #strictButton {
-        background: red;
-        border-color: red; }
-      #buttonBoard .button-section > div .switch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 25px; }
-      #buttonBoard .button-section > div .switch input {
-        display: none; }
-      #buttonBoard .button-section > div .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc; }
-      #buttonBoard .button-section > div .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 0;
-        bottom: 0;
-        border: solid 2.5px #3C3C3C;
-        background-color: white; }
-      #buttonBoard .button-section > div input:checked + .slider:before {
-        transform: translateX(25px); }
-      #buttonBoard .button-section > div .slider:after {
-        position: absolute;
-        content: "";
-        height: 12px;
-        width: 12px;
-        border-radius: 50%;
-        left: 0;
-        top: 50%;
-        transform: translate(-150%, -50%);
-        background: radial-gradient(#5b5656, #ebe7e7);
-        pointer-events: none; }
-      #buttonBoard .button-section > div input:checked + .slider:after {
-        background: radial-gradient(#d45e0f, orange); }
+  #buttonBoard .button-section > div {
+    margin: 0.5rem;
+    /* TOGGLE SWITCH */
+    /* Hide default HTML checkbox */
+    /* The slider */ }
+    #buttonBoard .button-section > div label {
+      display: block; }
+    #buttonBoard .button-section > div .button-rounded {
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      border-style: outset;
+      outline: none; }
+      #buttonBoard .button-section > div .button-rounded:active {
+        border-style: inset; }
+    #buttonBoard .button-section > div #startButton {
+      background: green;
+      border-color: green; }
+    #buttonBoard .button-section > div #strictButton {
+      background: red;
+      border-color: red; }
+    #buttonBoard .button-section > div .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 25px; }
+    #buttonBoard .button-section > div .switch input {
+      display: none; }
+    #buttonBoard .button-section > div .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc; }
+    #buttonBoard .button-section > div .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 0;
+      bottom: 0;
+      border: solid 2.5px #3C3C3C;
+      background-color: white; }
+    #buttonBoard .button-section > div input:checked + .slider:before {
+      transform: translateX(25px); }
+    #buttonBoard .button-section > div .slider:after {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      left: 0;
+      top: 50%;
+      transform: translate(-150%, -50%);
+      background: radial-gradient(#5b5656, #ebe7e7);
+      pointer-events: none; }
+    #buttonBoard .button-section > div input:checked + .slider:after {
+      background: radial-gradient(#d45e0f, orange); }
   #buttonBoard .counter-section {
     display: flex;
     align-items: center;
@@ -167,8 +167,5 @@ svg #yellowButton {
 @media (max-width: 650px) {
   #buttonBoard {
     left: 325px; } }
-/* CUSTOM CLASSES */
-h1 {
-  margin: 0; }
 
 /*# sourceMappingURL=main.css.map */

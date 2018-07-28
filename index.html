@@ -17,12 +17,10 @@
 </head>
 
 <body>
-    <h1 style="text-align: center"> The Simon Game</h1>
-
-    <div style="text-align: center; position: relative; overflow-x:auto; user-select: none;">
+    <div class="container">
         <div id="buttonBoard">
-            <h1 style="font-size: 3rem; color: gray">Simon</h1>
-            <div style="padding-top: 1rem;">
+            <h1>Simon</h1>
+            <div>
                 <div class="button-section">
                     <div>
                         <label class="switch">
@@ -58,12 +56,12 @@
             <path d="M215 325 L435 325 A 110 110 0 0 0 215 325" stroke="black" stroke-width="1"></path>
             <path d="M215 335 L435 335 A 110 105 0 0 1 215 335" stroke="black" fill="transparent" stroke-width="1"></path>
             <!-- Color shapes - buttons of the game -->
-            <path class="colorShape disabled" id="greenButton" d="M100 325 L175 325 A 150 150 0 0 1 325 175 L325 100 A225 225 0 0 0 100 325" stroke="black"
-                stroke-width="0"></path>
-            <path class="colorShape disabled" id="redButton" d="M550 325 L475 325 A 150 150 0 0 0 325 175 L325 100 A225 225 0 0 1 550 325" stroke="black"
-                stroke-width="0"></path>
-            <path class="colorShape disabled" id="blueButton" d="M550 325 L475 325 A 150 150 0 0 1 325 475 L325 550 A225 225 0 0 0 550 325" stroke="black"
-                stroke-width="0"></path>
+            <path class="colorShape disabled" id="greenButton" d="M100 325 L175 325 A 150 150 0 0 1 325 175 L325 100 A225 225 0 0 0 100 325"
+                stroke="black" stroke-width="0"></path>
+            <path class="colorShape disabled" id="redButton" d="M550 325 L475 325 A 150 150 0 0 0 325 175 L325 100 A225 225 0 0 1 550 325"
+                stroke="black" stroke-width="0"></path>
+            <path class="colorShape disabled" id="blueButton" d="M550 325 L475 325 A 150 150 0 0 1 325 475 L325 550 A225 225 0 0 0 550 325"
+                stroke="black" stroke-width="0"></path>
             <path class="colorShape disabled" id="yellowButton" d="M100 325 L175 325 A 150 150 0 0 0 325 475 L325 550 A225 225 0 0 1 100 325"
                 stroke="black" stroke-width="0"></path>
             <!-- Lines that present limits between buttons of the game -->

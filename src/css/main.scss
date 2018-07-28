@@ -3,13 +3,13 @@
 /* VARIABLES */
 
 $greenButton: #39c339;
-$greenButtonDarker: #0aa60a;
+$greenButtonDarker: darken($greenButton, 10%);
 $redButton: #e35c5c;
-$redButtonDarker: #dd2626;
+$redButtonDarker: darken($redButton, 10%);
 $blueButton: #7070f4;
-$blueButtonDarker: #4d4dd5;
+$blueButtonDarker: darken($blueButton, 10%);
 $yellowButton: #f0f05e;
-$yellowButtonDarker: #e6e612;
+$yellowButtonDarker: darken($yellowButton, 10%);
 $counterPink: #d45252;
 /* FONTS */
 
@@ -19,89 +19,61 @@ $counterPink: #d45252;
     font-display: swap;
 }
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    user-select: none;
+    overflow-x: auto;
+}
+
 /* COLOR SHAPES */
 
-svg #greenButton,
-svg #redButton,
-svg #blueButton,
-svg #yellowButton {
+svg [id*="Button"] {
     cursor: pointer;
+    &.disabled {
+        pointer-events: none;
+    }
+}
+
+@mixin buttonsMixin($fillColor, $fillHoverColor, $strokeActiveColor) {
+    fill: $fillColor;
+    &:hover {
+        fill: $fillHoverColor;
+    }
+    &:active {
+        stroke-width: 3;
+        stroke: $strokeActiveColor;
+    }
+    &.highlighted {
+        fill: $fillHoverColor;
+    }
 }
 
 #greenButton {
-    /* Should use a mixin for the big buttons */
-    /* Hover stands as a color variant when button is clicked */
-    fill: $greenButton;
-    &:hover {
-        fill: $greenButtonDarker;
-    }
-    &:active {
-        stroke: green;
-        stroke-width: 3;
-    }
-}
-
-#greenButton.highlighted {
-    fill: $greenButtonDarker;
-}
-
-#greenButton.disabled {
-    pointer-events: none;
+    @include buttonsMixin($greenButton, $greenButtonDarker, green)
 }
 
 #redButton {
-    fill: $redButton;
-    &:hover {
-        fill: $redButtonDarker;
-    }
-    &:active {
-        stroke: red;
-        stroke-width: 3;
-    }
-}
-
-#redButton.highlighted {
-    fill: $redButtonDarker;
-}
-
-#redButton.disabled {
-    pointer-events: none;
+    @include buttonsMixin($redButton, $redButtonDarker, red)
 }
 
 #blueButton {
-    fill: $blueButton;
-    &:hover {
-        fill: $blueButtonDarker;
-    }
-    &:active {
-        stroke: blue;
-        stroke-width: 3;
-    }
-}
-
-#blueButton.highlighted {
-    fill: $blueButtonDarker;
-}
-#blueButton.disabled {
-    pointer-events: none;
+    @include buttonsMixin($blueButton, $blueButtonDarker, blue)
 }
 
 #yellowButton {
-    fill: $yellowButton;
-    &:hover {
-        fill: $yellowButtonDarker;
-    }
-    &:active {
-        stroke: yellow;
-        stroke-width: 3;
-    }
-}
-
-#yellowButton.highlighted {
-    fill: $yellowButtonDarker;
-}
-#yellowButton.disabled {
-    pointer-events: none;
+    @include buttonsMixin($yellowButton, $yellowButtonDarker, yellow)
 }
 
 /* BUTTON BOARD */ // This is nested too much, I should separate things later on
@@ -112,82 +84,86 @@ svg #yellowButton {
     transform: translate(-50%, -40%);
     h1 {
         font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        color: gray;
+        margin: 0;
+        padding-bottom: 1rem;
     }
     .button-section {
         display: flex;
         align-items: center;
-        &>div {
-            margin: 0.5rem;
-            label {
-                display: block;
+    }
+    .button-section>div {
+        margin: 0.5rem;
+        label {
+            display: block;
+        }
+        .button-rounded {
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            border-style: outset;
+            outline: none;
+            &:active {
+                border-style: inset;
             }
-            .button-rounded {
-                border-radius: 50%;
-                height: 20px;
-                width: 20px;
-                border-style: outset;
-                outline: none;
-                &:active {
-                    border-style: inset;
-                }
-            }
-            #startButton {
-                background: green;
-                border-color: green;
-            }
-            #strictButton {
-                background: red;
-                border-color: red;
-            }
-            /* TOGGLE SWITCH */
-            .switch {
-                position: relative;
-                display: inline-block;
-                width: 50px;
-                height: 25px;
-            }
-            /* Hide default HTML checkbox */
-            .switch input {
-                display: none;
-            }
-            /* The slider */
-            .slider {
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: #ccc;
-            }
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 20px;
-                width: 20px;
-                left: 0;
-                bottom: 0;
-                border: solid 2.5px #3C3C3C;
-                background-color: white;
-            }
-            input:checked+.slider:before {
-                transform: translateX(25px);
-            }
-            .slider:after {
-                position: absolute;
-                content: "";
-                height: 12px;
-                width: 12px;
-                border-radius: 50%;
-                left: 0;
-                top: 50%;
-                transform: translate(-150%, -50%);
-                background: radial-gradient(#5b5656, #ebe7e7);
-                pointer-events: none;
-            }
-            input:checked+.slider:after {
-                background: radial-gradient(#d45e0f, orange);
-            }
+        }
+        #startButton {
+            background: green;
+            border-color: green;
+        }
+        #strictButton {
+            background: red;
+            border-color: red;
+        }
+        /* TOGGLE SWITCH */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+        }
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 0;
+            bottom: 0;
+            border: solid 2.5px #3C3C3C;
+            background-color: white;
+        }
+        input:checked+.slider:before {
+            transform: translateX(25px);
+        }
+        .slider:after {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            left: 0;
+            top: 50%;
+            transform: translate(-150%, -50%);
+            background: radial-gradient(#5b5656, #ebe7e7);
+            pointer-events: none;
+        }
+        input:checked+.slider:after {
+            background: radial-gradient(#d45e0f, orange);
         }
     }
     /* COUNTER */ // Counter should indicate if the game is ON or OFF
@@ -222,10 +198,4 @@ svg #yellowButton {
     #buttonBoard {
         left: 325px;
     }
-}
-
-/* CUSTOM CLASSES */
-
-h1 {
-    margin: 0;
 }
