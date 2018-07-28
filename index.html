@@ -50,8 +50,8 @@
         <svg width="650" height="650" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <!-- Filter for the outer circle to achieve shadow -->
             <defs>
-                <filter id="filter1" x="0" y="0">
-                    <feOffset result="offOut" in="SourceGraphic" dx="5" dy="5" />
+                <filter id="filter1" x="-10%" y="-10%" height="200%" width="200%">
+                    <feOffset result="offOut" in="SourceGraphic" dx="10" dy="10" />
                     <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
                     <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
